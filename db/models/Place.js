@@ -9,7 +9,7 @@ const placeSchema = new Schema({
   mapURL: { type: String, required: true },
   description: { type: String, required: true },
 });
-
+// console.log("big Place",Place);
 const Place = mongoose.models.Place || mongoose.model("Place", placeSchema);
 
 export default Place;
