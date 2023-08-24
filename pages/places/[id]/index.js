@@ -37,9 +37,17 @@ export default function DetailsPage() {
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
-  function deletePlace() {
-    console.log('deleted?');
+  async function deletePlace() {
+    await fetch(`/api/places/${id}`, {
+      method: "DELETE",
+    });
+    // You are handing over the joke identified by its id to our DELETE request method.
+    // This is the entire code required to do so.
+    router.push("/");
+    // After deleting the joke, you route back to our index page.
   }
+  
+
 
   return (
     <>
@@ -63,6 +71,7 @@ export default function DetailsPage() {
       <Link href={place.mapURL} passHref legacyBehavior>
         <StyledLocationLink>Location on Google Maps</StyledLocationLink>
       </Link>
+      
       <p>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>

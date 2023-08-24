@@ -17,4 +17,11 @@ export default async function handler(request, response) {
       console.log("placetoupdate",placeToUpdate)
       // If successful, you'll receive an OK status code.
     }
+
+    if (request.method === "DELETE") {
+      const placeToDelete = await Place.findByIdAndDelete(id);
+      // Declare jokeToDelete to be the joke identified by its id and delete it.
+      // This line handles the entire deletion process.
+      response.status(200).json(placeToDelete);
+    }
 }
