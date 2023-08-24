@@ -1,5 +1,11 @@
-import { places } from '../../../lib/db';
+import Place from "../../../db/models/Place";
+import dbConnect from "../../../db/connect";
+export default async function handler(request, response) {
+  await dbConnect();
 
-export default function handler(request, response) {
-  return response.status(200).json(places);
+  if (request.method === "GET") {
+    const places = await Place.find();
+    console.log("places are in API: ", places);
+    return response.status(200).json(places);
+  }
 }
